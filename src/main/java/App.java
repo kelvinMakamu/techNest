@@ -1,3 +1,10 @@
+import spark.ModelAndView;
+import spark.template.handlebars.HandlebarsTemplateEngine;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import static spark.Spark.*;
 
 public class App {
@@ -14,6 +21,9 @@ public class App {
         port(getAssignedServerPort());
         staticFileLocation("/public");
 
-        get("/", (req,res) -> "Technology Division!");
+        get("/",(req,res) -> {
+            Map<String,Object> model  = new HashMap<>();
+            return new ModelAndView(model,"index.hbs");
+        }, new HandlebarsTemplateEngine());
     }
 }

@@ -1,10 +1,14 @@
 package components.departments;
 
 import components.members.Member;
+import org.sql2o.Sql2o;
 
 import java.util.List;
 
 public class DepartmentService implements DepartmentDao{
+
+    public DepartmentService(Sql2o sql2o) {
+    }
 
     @Override
     public List<Department> getAllDepartments() {

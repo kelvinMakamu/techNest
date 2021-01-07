@@ -22,6 +22,12 @@ public class DepartmentTest {
         assertEquals(true, department instanceof Department);
     }
 
+    @Test
+    public void getName_InstantiatesWithName_Business_Engagement(){
+        Department department = setupNewDepartment();
+        assertEquals("Business Engagement",department.getName());
+    }
+
     public Department setupNewDepartment(){
         return new Department("Business Engagement");
     }

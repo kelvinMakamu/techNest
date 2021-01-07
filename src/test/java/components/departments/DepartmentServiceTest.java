@@ -2,6 +2,7 @@ package components.departments;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
@@ -23,6 +24,14 @@ public class DepartmentServiceTest {
     @After
     public void tearDown() throws Exception {
         connection.close();
+    }
+
+    @Test
+    public void addDepartment_addingSetsId(){
+        Department department = setupNewDepartment();
+        int originalID = department.getId();
+        departmentService.addDepartment(department);
+        assertNotEquals(originalID, department.getId());
     }
 
     // HELPER METHODS

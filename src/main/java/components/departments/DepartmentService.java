@@ -1,4 +1,5 @@
 package components.departments;
 
-public class DepartmentService {
+public class DepartmentService implements DepartmentDao{
+
 }

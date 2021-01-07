@@ -15,5 +15,7 @@ public class DepartmentTest {
     public void tearDown() throws Exception {
     }
 
-    
+    public Department setupNewDepartment(){
+        return new Department("Business Engagement");
+    }
 }

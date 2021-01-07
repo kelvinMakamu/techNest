@@ -25,5 +25,8 @@ public class DepartmentServiceTest {
         connection.close();
     }
 
-    
+    // HELPER METHODS
+    public Department setupNewDepartment(){
+        return new Department("Business Engagement");
+    }
 }

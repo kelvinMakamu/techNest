@@ -41,7 +41,7 @@ public class DepartmentServiceTest {
         Department foundDepartment = departmentService.getDepartmentById(department.getId());
         assertEquals(department,foundDepartment);
     }
-    
+
     // HELPER METHODS
     public Department setupNewDepartment(){
         return new Department("Business Engagement");

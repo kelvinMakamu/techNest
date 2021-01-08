@@ -41,7 +41,12 @@ public class DepartmentService implements DepartmentDao{
 
     @Override
     public Department getDepartmentById(int departmentId) {
-        return null;
+        String query = "SELECT * FROM departments WHERE id=:id";
+        try(Connection connection = sql2o.open()){
+            return connection.createQuery(query)
+                    .addParameter("id",departmentId)
+                    .executeAndFetchFirst(Department.class);
+        }
     }
 
     @Override

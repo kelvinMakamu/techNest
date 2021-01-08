@@ -36,13 +36,21 @@ public class DepartmentServiceTest {
     }
 
     @Test
+    public void getAllDepartments_allExistingDepartments(){
+        Department department       = setupNewDepartment();
+        departmentService.addDepartment(department);
+        Department secondDepartment = new Department("Business Development");
+        departmentService.addDepartment(secondDepartment);
+        assertEquals(2,departmentService.getAllDepartments().size());
+    }
+
+    @Test
     public void getDepartmentById_getSpecificDepartment(){
         Department department      = setupNewDepartment();
         departmentService.addDepartment(department);
         Department foundDepartment = departmentService.getDepartmentById(department.getId());
-        assertEquals(department,foundDepartment);
+        assertEquals(department.getName(),foundDepartment.getName());
     }
-
 
 
     @Test

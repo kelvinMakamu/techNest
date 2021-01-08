@@ -34,6 +34,14 @@ public class DepartmentServiceTest {
         assertNotEquals(originalID, department.getId());
     }
 
+    @Test
+    public void getDepartmentById_getSpecificDepartment(){
+        Department department = setupNewDepartment();
+        departmentService.addDepartment(department);
+        Department foundDepartment = departmentService.getDepartmentById(department.getId());
+        assertEquals(department,foundDepartment);
+    }
+    
     // HELPER METHODS
     public Department setupNewDepartment(){
         return new Department("Business Engagement");

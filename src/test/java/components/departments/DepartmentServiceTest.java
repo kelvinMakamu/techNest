@@ -36,10 +36,17 @@ public class DepartmentServiceTest {
 
     @Test
     public void getDepartmentById_getSpecificDepartment(){
-        Department department = setupNewDepartment();
+        Department department      = setupNewDepartment();
         departmentService.addDepartment(department);
         Department foundDepartment = departmentService.getDepartmentById(department.getId());
         assertEquals(department,foundDepartment);
+    }
+
+    @Test
+    public void deleteDepartments_deleteAvailableDepartments(){
+        Department department      = setupNewDepartment();
+        departmentService.addDepartment(department);
+        assertEquals(0,departmentService.getAllDepartments().size());
     }
 
     // HELPER METHODS

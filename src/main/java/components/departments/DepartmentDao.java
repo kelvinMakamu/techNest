@@ -17,4 +17,6 @@ public interface DepartmentDao {
     void updateDepartment(int departmentId, String name);
     // DELETE RESPECTIVE DEPARTMENT
     void deleteDepartmentById(int departmentId);
+    // DELETE ALL DEPARTMENTS
+    void deleteDepartments();
 }

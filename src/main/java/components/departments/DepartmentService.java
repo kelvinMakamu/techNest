@@ -58,4 +58,9 @@ public class DepartmentService implements DepartmentDao{
     public void deleteDepartmentById(int departmentId) {
 
     }
+
+    @Override
+    public void deleteDepartments() {
+
+    }
 }

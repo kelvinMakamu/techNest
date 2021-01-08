@@ -42,6 +42,8 @@ public class DepartmentServiceTest {
         assertEquals(department,foundDepartment);
     }
 
+
+
     @Test
     public void deleteDepartments_deleteAvailableDepartments(){
         Department department      = setupNewDepartment();

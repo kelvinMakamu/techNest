@@ -17,7 +17,11 @@ public class DepartmentService implements DepartmentDao{
 
     @Override
     public List<Department> getAllDepartments() {
-        return null;
+        String query = "SELECT * FROM departments";
+        try(Connection connection = sql2o.open()){
+            return connection.createQuery(query)
+                    .executeAndFetch(Department.class);
+        }
     }
 
     @Override

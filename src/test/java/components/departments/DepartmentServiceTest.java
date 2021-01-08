@@ -30,7 +30,7 @@ public class DepartmentServiceTest {
     @Test
     public void addDepartment_addingSetsId(){
         Department department = setupNewDepartment();
-        int originalID = department.getId();
+        int originalID        = department.getId();
         departmentService.addDepartment(department);
         assertNotEquals(originalID, department.getId());
     }

@@ -23,6 +23,7 @@ public class DepartmentServiceTest {
 
     @After
     public void tearDown() throws Exception {
+        departmentService.deleteDepartments();
         connection.close();
     }
 

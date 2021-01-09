@@ -62,7 +62,7 @@ h2, h3, h4{
   box-shadow: 0px 2px 3px #eee;
   background-color: #fff;
   margin: 2% 2% 2% 0%;
-  padding: 3% 3% 3% 3%;
+  padding: 2% 2% 2% 2%;
   border-top:3px solid #439894;
   transition: all 0.2s ease-in-out;
   line-height: 24px;
@@ -72,6 +72,10 @@ h2, h3, h4{
     border: 1px solid #eee !important;
     padding: 2% 2% 2% 2% !important;
     height: 25% !important;
+}
+
+.department-container{
+  padding-left:12.5%;
 }
 
 .no-department{
@@ -89,8 +93,9 @@ h2, h3, h4{
 }
 
 .link-right{
-    margin-left:25%;
+    margin-right:5% !important;
 }
+
 .footer{
     margin-top: 4% !important;
     margin-bottom: -5% !important;

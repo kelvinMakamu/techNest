@@ -23,13 +23,13 @@
                 </form>
         </div>
         <div class="col-md-8 col-lg-8 col-sm-12">
-            <h4> Division Departments</h4>
+            <h4 class="text-center"> Technology Division Departments</h4>
             <hr/>
-            <div class="container">
+            <div class="container department-container">
             {{#if departments}}
                 <div class="row">
                 {{#each departments }}
-                    <div class="col-md-3 col-lg-3 col-sm-12 card">
+                    <div class="col-md-5 col-lg-5 col-sm-12 card">
                         <div class="row">
                             <div class="col-md-12 col-lg-12 col-sm-12">
                                 <p class="text-center department-name">{{name}}</p>
@@ -40,8 +40,11 @@
                             <div class="col-md-4 col-lg-4 col-sm-12">
                                 <a href="/departments/{{id}}/members" class="btn btn-primary btn-sm">View</a>
                             </div>
-                            <div class="col-md-8 col-lg-8 col-sm-12">
-                                <a href="/departments/{{id}}" class="btn btn-warning btn-sm link-right">Update</a>
+                            <div class="col-md-4 col-lg-4 col-sm-12">
+                                <a href="/departments/{{id}}" class="btn btn-warning btn-sm">Update</a>
+                            </div>
+                            <div class="col-md-4 col-lg-4 col-sm-12">
+                                <a href="/departments/{{id}}/delete" class="btn btn-danger btn-sm link-right">Delete</a>
                             </div>
                         </div>
                     </div>

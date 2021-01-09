@@ -55,7 +55,15 @@ public class DepartmentService implements DepartmentDao{
 
     @Override
     public void updateDepartment(int departmentId, String name) {
-
+        String query = "UPDATE departments SET name=:name WHERE id=:id";
+        try(Connection connection = sql2o.open()){
+            connection.createQuery(query)
+                    .addParameter("id",departmentId)
+                    .addParameter("name",name)
+                    .executeUpdate();
+        }catch (Sql2oException ex){
+            System.out.println("Database Error "+ex.getLocalizedMessage());
+        }
     }
 
     @Override

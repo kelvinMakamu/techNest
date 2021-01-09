@@ -35,3 +35,11 @@ body{
     margin-top: 2% !important;
     font-size: 18px !important;
 }
+
+.footer{
+    margin-top: 4% !important;
+    margin-bottom: -5% !important;
+    padding: 3% 2% 2% 2% !important;
+    background: #dedede !important;
+    height: 2.5% !important;
+}

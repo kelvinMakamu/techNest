@@ -71,6 +71,7 @@ h2, h3, h4{
 .department-form{
     border: 1px solid #eee !important;
     padding: 2% 2% 2% 2% !important;
+    height: 25% !important;
 }
 
 .no-department{
@@ -79,6 +80,12 @@ h2, h3, h4{
     text-decoration: underline;
     text-transform: capitalize;
     margin-bottom: 2.5% !important;
+}
+
+.department-name{
+    font-size: 16px;
+    text-transform: capitalize;
+    margin: 2% 0% 2% 0% !important;
 }
 
 .link-right{

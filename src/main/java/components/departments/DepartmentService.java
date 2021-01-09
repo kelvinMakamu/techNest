@@ -68,7 +68,14 @@ public class DepartmentService implements DepartmentDao{
 
     @Override
     public void deleteDepartmentById(int departmentId) {
-
+        String query = "DELETE FROM departments WHERE id:id";
+        try(Connection connection = sql2o.open()){
+            connection.createQuery(query)
+                    .addParameter("id",departmentId)
+                    .executeUpdate();
+        }catch(Sql2oException ex){
+            System.out.println("Database Error "+ex.getLocalizedMessage());
+        }
     }
 
     @Override

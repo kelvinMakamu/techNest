@@ -67,6 +67,14 @@ public class DepartmentServiceTest {
     }
 
     @Test
+    public void deleteDepartmentById_deleteSpecificDepartment(){
+        Department department      = setupNewDepartment();
+        departmentService.addDepartment(department);
+        departmentService.deleteDepartmentById(department.getId());
+        assertEquals(0,departmentService.getAllDepartments().size());
+    }
+
+    @Test
     public void deleteDepartments_deleteAvailableDepartments(){
         Department department      = setupNewDepartment();
         departmentService.addDepartment(department);

@@ -43,11 +43,11 @@ public class Department {
         if (this == o) return true;
         if (!(o instanceof Department)) return false;
         Department that = (Department) o;
-        return getId() == that.getId() && Objects.equals(getName(), that.getName());
+        return getId() == that.getId() && getName().equals(that.getName()) && getCreatedAt().equals(that.getCreatedAt());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName());
+        return Objects.hash(getId(), getName(), getCreatedAt());
     }
 }

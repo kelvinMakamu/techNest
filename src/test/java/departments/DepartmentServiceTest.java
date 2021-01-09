@@ -23,7 +23,7 @@ public class DepartmentServiceTest {
 
     @After
     public void tearDown() throws Exception {
-        // departmentService.deleteDepartments();
+        departmentService.deleteDepartments();
         connection.close();
     }
 
@@ -59,7 +59,8 @@ public class DepartmentServiceTest {
         Department department      = setupNewDepartment();
         departmentService.addDepartment(department);
         Department foundDepartment = departmentService.getDepartmentById(department.getId());
-        assertEquals(department,foundDepartment);
+        assertEquals(department.getId(),foundDepartment.getId());
+        assertEquals(department.getName(),foundDepartment.getName());
     }
 
     @Test

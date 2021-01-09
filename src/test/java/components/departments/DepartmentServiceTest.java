@@ -40,14 +40,21 @@ public class DepartmentServiceTest {
         assertEquals(0,departmentService.getAllDepartments().size());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void getAllDepartments_CountAddedDepartments(){
         Department department = setupNewDepartment();
         departmentService.addDepartment(department);
         assertEquals(1,departmentService.getAllDepartments().size());
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
+    public void getAllDepartmentMembers_ReturningForNoMembers(){
+        Department department = setupNewDepartment();
+        departmentService.addDepartment(department);
+        assertEquals(0,departmentService.getAllDepartmentMembers(department.getId()).size());
+    }
+
+    @Test
     public void getDepartmentById_getSpecificDepartment(){
         Department department      = setupNewDepartment();
         departmentService.addDepartment(department);

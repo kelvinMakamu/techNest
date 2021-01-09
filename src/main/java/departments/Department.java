@@ -1,6 +1,7 @@
 package departments;
 
 import java.time.LocalDateTime;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Department {
@@ -10,7 +11,7 @@ public class Department {
     private LocalDateTime createdAt;
 
     public Department(String name){
-        this.name      = name;
+        this.name      = name.toLowerCase();
         this.createdAt = LocalDateTime.now();
     }
 
@@ -27,7 +28,7 @@ public class Department {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name.toLowerCase();
     }
 
     public LocalDateTime getCreatedAt() {

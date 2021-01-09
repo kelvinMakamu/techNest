@@ -24,7 +24,7 @@ public class App {
         port(getAssignedServerPort());
         staticFileLocation("/public");
 
-        String DB_URL = "jdbc:postgresql://localhost:5432/technest_test";
+        String DB_URL = "jdbc:postgresql://localhost:5432/technest";
         Sql2o sql2o   = new Sql2o(DB_URL, null, null);
         DepartmentService departmentService = new DepartmentService(sql2o);
 
@@ -38,6 +38,14 @@ public class App {
             List<Department> departments = departmentService.getAllDepartments();
             model.put("departments",departments);
             return new ModelAndView(model,"department.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/departments", (req, res) -> {
+            String name = req.queryParams("name");
+            Department department = new Department(name);
+            departmentService.addDepartment(department);
+            res.redirect("/departments");
+            return null;
         }, new HandlebarsTemplateEngine());
     }
 }

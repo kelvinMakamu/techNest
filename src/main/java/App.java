@@ -25,5 +25,10 @@ public class App {
             Map<String,Object> model  = new HashMap<>();
             return new ModelAndView(model,"index.hbs");
         }, new HandlebarsTemplateEngine());
+
+        get("/departments",(req,res)->{
+            Map<String,Object> model = new HashMap<>();
+            return new ModelAndView(model,"department.hbs");
+        }, new HandlebarsTemplateEngine());
     }
 }

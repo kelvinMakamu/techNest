@@ -25,7 +25,7 @@ body{
     opacity: 0.5 !important;
 }
 
-.display-4{
+.display-4, h1, h2, h3, h4{
     font-size: 25px !important;
     font-weight: thinner !important;
     text-transform: uppercase !important;

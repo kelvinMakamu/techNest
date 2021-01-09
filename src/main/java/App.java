@@ -47,5 +47,12 @@ public class App {
             res.redirect("/departments");
             return null;
         }, new HandlebarsTemplateEngine());
+
+        get("/departments/:id/delete", (req, res) -> {
+            int departmentId = Integer.parseInt(req.params("id"));
+            departmentService.deleteDepartmentById(departmentId);
+            res.redirect("/departments");
+            return null;
+        }, new HandlebarsTemplateEngine());
     }
 }

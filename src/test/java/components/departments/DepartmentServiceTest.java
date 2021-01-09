@@ -56,6 +56,17 @@ public class DepartmentServiceTest {
     }
 
     @Test
+    public void updateDepartment_EditDepartmentName(){
+        Department department      = setupNewDepartment();
+        String initialName         = department.getName();
+        departmentService.addDepartment(department);
+        departmentService.updateDepartment(department.getId(), "Cyber Security");
+        Department foundDepartment = departmentService.getDepartmentById(department.getId());
+        String updatedName         = foundDepartment.getName();
+        assertNotEquals(initialName,updatedName);
+    }
+
+    @Test
     public void deleteDepartments_deleteAvailableDepartments(){
         Department department      = setupNewDepartment();
         departmentService.addDepartment(department);

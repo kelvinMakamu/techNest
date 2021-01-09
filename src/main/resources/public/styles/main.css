@@ -68,6 +68,10 @@ h2, h3, h4{
   line-height: 24px;
 }
 
+strong{
+    text-transform: capitalize !important;
+}
+
 .department-form{
     border: 1px solid #eee !important;
     padding: 2% 2% 2% 2% !important;

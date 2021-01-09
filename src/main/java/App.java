@@ -1,5 +1,6 @@
 import departments.Department;
 import departments.DepartmentService;
+import components.members.Member;
 import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -46,6 +47,16 @@ public class App {
             departmentService.addDepartment(department);
             res.redirect("/departments");
             return null;
+        }, new HandlebarsTemplateEngine());
+
+        get("/departments/:id/members", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            int departmentId = Integer.parseInt(req.params("id"));
+            Department department = departmentService.getDepartmentById(departmentId);
+            model.put("department",department.getName());
+            List<Member> members  = departmentService.getAllDepartmentMembers(departmentId);
+            model.put("members",members);
+            return new ModelAndView(model,"department_members.hbs");
         }, new HandlebarsTemplateEngine());
 
         get("/departments/:id/delete", (req, res) -> {

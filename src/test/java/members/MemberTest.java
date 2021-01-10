@@ -5,6 +5,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+
 import static org.junit.Assert.*;
 
 public class MemberTest {
@@ -35,7 +37,11 @@ public class MemberTest {
         assertEquals("Makamu",member.getLastName());
     }
 
-
+    @Test
+    public void getCreatedAt_InstantiatesWithCurrentTimeToday(){
+        Member member = setupNewMember();
+        assertEquals(LocalDateTime.now().getDayOfWeek(),member.getCreatedAt().getDayOfWeek());
+    }
     // HELPER METHOD
     public Member setupNewMember(){
         return new Member("Kelvin","Makamu",7);

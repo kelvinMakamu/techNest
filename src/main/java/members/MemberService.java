@@ -40,7 +40,12 @@ public class MemberService implements MemberDao{
 
     @Override
     public Member getMemberById(int memberId) {
-        return null;
+        String query = "SELECT * FROM members WHERE id=:id";
+        try(Connection connection = sql2o.open()){
+            return connection.createQuery(query)
+                    .addParameter("id",memberId)
+                    .executeAndFetchFirst(Member.class);
+        }
     }
 
     @Override

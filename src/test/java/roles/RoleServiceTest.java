@@ -69,6 +69,14 @@ public class RoleServiceTest {
     }
 
     @Test
+    public void deleteRoleById_deleteSpecificRole(){
+        Role role = setupNewRole();
+        roleService.addRole(role);
+        roleService.deleteRoleById(role.getId());
+        assertEquals(0,roleService.getAllRoles().size());
+    }
+
+    @Test
     public void deleteRoles_deleteAvailableRoles(){
         Role role  = setupNewRole();
         roleService.addRole(role);

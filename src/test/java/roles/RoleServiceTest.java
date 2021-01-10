@@ -1,7 +1,9 @@
 package roles;
 
+import departments.Department;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.sql2o.Sql2o;
 import org.sql2o.Connection;
 
@@ -25,5 +27,17 @@ public class RoleServiceTest {
         connection.close();
     }
 
+    @Test
+    public void addRole_addingSetsId(){
+        Role role      = setupNewRole();
+        int originalID = role.getId();
+        roleService.addRole(role);
+        assertNotEquals(originalID, role.getId());
+    }
+
+    // HELPER METHODS
+    public Role setupNewRole(){
+        return new Role("Chairman");
+    }
 
 }

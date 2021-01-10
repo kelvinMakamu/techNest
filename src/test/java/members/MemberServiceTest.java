@@ -59,6 +59,20 @@ public class MemberServiceTest {
     }
 
     @Test
+    public void updateDepartment_EditDepartmentName(){
+        Member member            = setupNewMember();
+        String originalFirstName = member.getFirstName();
+        String originalLastName  = member.getLastName();
+        memberService.addMember(member);
+        memberService.updateMember(member.getId(), "Justin","Nyamohanga",7);
+        Member foundMember      = memberService.getMemberById(member.getId());
+        String updatedFirstName = foundMember.getFirstName();
+        String updatedLastName = foundMember.getLastName();
+        assertNotEquals(originalFirstName,updatedFirstName);
+        assertNotEquals(originalLastName,updatedLastName);
+    }
+
+    @Test
     public void deleteMembers_deleteAvailableMembers(){
         Member member = setupNewMember();
         memberService.addMember(member);

@@ -40,7 +40,12 @@ public class RoleService implements RoleDao{
 
     @Override
     public Role getRoleById(int roleId) {
-        return null;
+        String query = "SELECT * FROM roles WHERE id=:id";
+        try(Connection connection = sql2o.open()){
+            return connection.createQuery(query)
+                    .addParameter("id",roleId)
+                    .executeAndFetchFirst(Role.class);
+        }
     }
 
     @Override

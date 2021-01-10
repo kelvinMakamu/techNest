@@ -50,7 +50,18 @@ public class MemberService implements MemberDao{
 
     @Override
     public void updateMember(int memberId, String firstName, String lastName, int departmentId) {
-
+        String query = "UPDATE members SET firstName=:firstName,lastName=:lastName,departmentId=:departmentId" +
+                " WHERE id=:id";
+        try(Connection connection = sql2o.open()){
+            connection.createQuery(query)
+                    .addParameter("id",memberId)
+                    .addParameter("firstName",firstName)
+                    .addParameter("lastName",lastName)
+                    .addParameter("departmentId",departmentId)
+                    .executeUpdate();
+        }catch (Sql2oException ex){
+            System.out.println("Database Error "+ex.getLocalizedMessage());
+        }
     }
 
     @Override

@@ -1,6 +1,7 @@
 import departments.Department;
 import departments.DepartmentService;
 import members.Member;
+import members.MemberService;
 import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -28,9 +29,12 @@ public class App {
         String DB_URL = "jdbc:postgresql://localhost:5432/technest";
         Sql2o sql2o   = new Sql2o(DB_URL, null, null);
         DepartmentService departmentService = new DepartmentService(sql2o);
+        MemberService memberService = new MemberService(sql2o);
 
         get("/",(req,res) -> {
             Map<String,Object> model  = new HashMap<>();
+            List<Member> members = memberService.getAllMembers();
+            model.put("members",members);
             return new ModelAndView(model,"index.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -79,6 +83,23 @@ public class App {
             int departmentId = Integer.parseInt(req.params("id"));
             departmentService.deleteDepartmentById(departmentId);
             res.redirect("/departments");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        get("/staff",(req,res)->{
+            Map<String,Object> model = new HashMap<>();
+            List<Department> departments = departmentService.getAllDepartments();
+            model.put("departments",departments);
+            List<Member> members = memberService.getAllMembers();
+            model.put("members",members);
+            return new ModelAndView(model,"staff.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/staff", (req, res) -> {
+            String name = req.queryParams("name");
+            Department department = new Department(name);
+            departmentService.addDepartment(department);
+            res.redirect("/staff");
             return null;
         }, new HandlebarsTemplateEngine());
     }

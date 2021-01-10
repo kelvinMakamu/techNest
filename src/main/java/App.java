@@ -4,6 +4,8 @@ import members.Member;
 import members.MemberPayload;
 import members.MemberService;
 import org.sql2o.Sql2o;
+import roles.Role;
+import roles.RoleService;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -29,8 +31,9 @@ public class App {
 
         String DB_URL = "jdbc:postgresql://localhost:5432/technest";
         Sql2o sql2o   = new Sql2o(DB_URL, null, null);
-        DepartmentService departmentService = new DepartmentService(sql2o);
         MemberService memberService = new MemberService(sql2o);
+        RoleService roleService     = new RoleService(sql2o);
+        DepartmentService departmentService = new DepartmentService(sql2o);
 
         get("/",(req,res) -> {
             Map<String,Object> model  = new HashMap<>();
@@ -165,6 +168,19 @@ public class App {
             req.session().attribute("deletedStaff","Staff Member was deleted successfully!");
             res.redirect("/staff");
             return null;
+        }, new HandlebarsTemplateEngine());
+
+        get("/roles",(req,res)->{
+            Map<String,Object> model = new HashMap<>();
+            List<Role> roles = roleService.getAllRoles();
+            model.put("roles",roles);
+            model.put("createdRole",req.session().attribute("createdRole"));
+            req.session().removeAttribute("createdRole");
+            model.put("updatedRole",req.session().attribute("updatedRole"));
+            req.session().removeAttribute("updatedRole");
+            model.put("deletedRole",req.session().attribute("deletedRole"));
+            req.session().removeAttribute("deletedRole");
+            return new ModelAndView(model,"role.hbs");
         }, new HandlebarsTemplateEngine());
     }
 }

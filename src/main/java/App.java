@@ -1,6 +1,6 @@
 import departments.Department;
 import departments.DepartmentService;
-import components.members.Member;
+import members.Member;
 import org.sql2o.Sql2o;
 import spark.ModelAndView;
 import spark.template.handlebars.HandlebarsTemplateEngine;

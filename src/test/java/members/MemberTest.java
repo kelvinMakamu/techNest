@@ -2,6 +2,7 @@ package members;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 
 import static org.junit.Assert.*;
 
@@ -15,7 +16,11 @@ public class MemberTest {
     public void tearDown() throws Exception {
     }
 
-
+    @Test
+    public void NewMember_InstantiatesCorrectly_true(){
+        Member member = setupNewMember();
+        assertEquals(true, member instanceof Member);
+    }
 
     // HELPER METHOD
     public Member setupNewMember(){

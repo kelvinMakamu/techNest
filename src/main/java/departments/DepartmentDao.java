@@ -1,6 +1,6 @@
 package departments;
 
-import components.members.Member;
+import members.Member;
 
 import java.util.List;
 

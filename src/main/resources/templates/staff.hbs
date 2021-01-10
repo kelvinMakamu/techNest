@@ -3,6 +3,7 @@
 {{/partial}}
 
 {{#partial "content"}}
+
     {{#if createdStaff}}
         <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{createdStaff}}
@@ -56,12 +57,32 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="form-group">
-                            <label>Select Department</label>
-                            <select id="departmentId" name="departmentId" class="form-control">
-                                {{#each departments}}
-                                    <option value="{{id}}" class="dept-select">{{name}}</option>
-                                {{/each}}
-                            </select>
+                            {{#if departments}}
+                                <label>Select Department</label>
+                                <select id="departmentId" name="departmentId" class="form-control">
+                                    {{#each departments}}
+                                        <option value="{{id}}" class="dept-select">{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            {{else}}
+                                <a href="/departments">Add Department</a>
+                            {{/if}}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            {{#if roles}}
+                                <label>Select Role</label>
+                                <select id="roleId" name="roleId" class="form-control">
+                                    {{#each roles}}
+                                        <option value="{{id}}" class="dept-select">{{name}}</option>
+                                    {{/each}}
+                                </select>
+                            {{else}}
+                                <a href="/roles">Add Role</a>
+                            {{/if}}
                         </div>
                     </div>
                 </div>
@@ -85,6 +106,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12">
                                         <p class="text-center department-name">{{firstName}} {{ lastName}}</p>
+                                        <h3 class="text-center">{{roleName}}</h3>
                                         <h4 class="text-center dept-desc">{{departmentName}}</h4>
                                     </div>
                                     <div class="col-md-12 col-lg-12 col-sm-12">

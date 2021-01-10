@@ -1,6 +1,7 @@
 package members;
 
 import departments.Department;
+import memberRole.MemberRole;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -18,8 +19,8 @@ public class MemberService implements MemberDao{
     @Override
     public List<MemberPayload> getAllMembers() {
         String query = "SELECT members.id AS memberId, members.firstName AS firstName, members.lastName As lastName," +
-                "departments.id AS departmentId, departments.name AS departmentName" +
-                " FROM members,departments WHERE members.departmentId=departments.id" +
+                "departments.id AS departmentId, departments.name AS departmentName, roles.name AS roleName " +
+                " FROM members,departments,roles WHERE members.roleId=roles.id AND members.departmentId=departments.id " +
                 " ORDER BY members.id DESC";
         try(Connection connection = sql2o.open()){
             return connection.createQuery(query)
@@ -29,7 +30,8 @@ public class MemberService implements MemberDao{
 
     @Override
     public void addMember(Member member) {
-        String query = "INSERT INTO members(firstName,lastName,departmentId) VALUES(:firstName,:lastName,:departmentId)";
+        String query = "INSERT INTO members(firstName,lastName,departmentId,roleId)" +
+                " VALUES(:firstName,:lastName,:departmentId,:roleId)";
         try(Connection connection = sql2o.open()){
             int id = (int)connection.createQuery(query,true)
                     .bind(member)
@@ -52,8 +54,8 @@ public class MemberService implements MemberDao{
     }
 
     @Override
-    public void updateMember(int memberId, String firstName, String lastName, int departmentId) {
-        String query = "UPDATE members SET firstName=:firstName,lastName=:lastName,departmentId=:departmentId" +
+    public void updateMember(int memberId, String firstName, String lastName, int departmentId, int roleId) {
+        String query = "UPDATE members SET firstName=:firstName,lastName=:lastName,departmentId=:departmentId,roleId=:roleId" +
                 " WHERE id=:id";
         try(Connection connection = sql2o.open()){
             connection.createQuery(query)
@@ -61,6 +63,7 @@ public class MemberService implements MemberDao{
                     .addParameter("firstName",firstName)
                     .addParameter("lastName",lastName)
                     .addParameter("departmentId",departmentId)
+                    .addParameter("roleId",roleId)
                     .executeUpdate();
         }catch (Sql2oException ex){
             System.out.println("Database Error "+ex.getLocalizedMessage());

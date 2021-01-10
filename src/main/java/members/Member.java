@@ -11,6 +11,7 @@ import java.util.Objects;
 public class Member {
     private int id;
     private int departmentId;
+    private int roleId;
     private String firstName;
     private String lastName;
     private LocalDateTime createdAt;
@@ -19,10 +20,11 @@ public class Member {
     Sql2o sql2o   = new Sql2o(DB_URL, null, null);
     DepartmentService departmentService = new DepartmentService(sql2o);
 
-    public Member(String firstName, String lastName,int departmentId){
+    public Member(String firstName,String lastName,int departmentId,int roleId){
         this.firstName    = firstName.toLowerCase();
         this.lastName     = lastName.toLowerCase();
         this.departmentId = departmentId;
+        this.roleId       = roleId;
         this.createdAt    = LocalDateTime.now();
     }
 
@@ -64,6 +66,14 @@ public class Member {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
     }
 
     @Override

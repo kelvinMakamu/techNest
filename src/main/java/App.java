@@ -88,8 +88,12 @@ public class App {
             int departmentId = Integer.parseInt(req.params("id"));
             Department department = departmentService.getDepartmentById(departmentId);
             model.put("department",department);
-            List<Member> members  = departmentService.getAllDepartmentMembers(departmentId);
+            List<MemberPayload> members  = departmentService.getAllDepartmentMembers(departmentId);
             model.put("members",members);
+            List<Role> roles  = roleService.getAllRoles();
+            model.put("roles",roles);
+            model.put("createdStaff",req.session().attribute("createdStaff"));
+            req.session().removeAttribute("createdStaff");
             return new ModelAndView(model,"department_members.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -98,8 +102,10 @@ public class App {
             int departmentId = Integer.parseInt(req.params("id"));
             String firstName = req.queryParams("firstName");
             String lastName  = req.queryParams("lastName");
-            Member member = new Member(firstName,lastName,departmentId);
+            int roleId = Integer.parseInt(req.queryParams("roleId"));
+            Member member = new Member(firstName,lastName,departmentId,roleId);
             memberService.addMember(member);
+            req.session().attribute("createdStaff","Staff Member was added successfully!");
             res.redirect("/departments/"+departmentId+"/members");
             return null;
         }, new HandlebarsTemplateEngine());
@@ -116,6 +122,8 @@ public class App {
             Map<String,Object> model = new HashMap<>();
             List<Department> departments = departmentService.getAllDepartments();
             model.put("departments",departments);
+            List<Role> roles  = roleService.getAllRoles();
+            model.put("roles",roles);
             List<MemberPayload> members = memberService.getAllMembers();
             model.put("members",members);
             model.put("createdStaff",req.session().attribute("createdStaff"));
@@ -124,6 +132,8 @@ public class App {
             req.session().removeAttribute("updatedStaff");
             model.put("deletedStaff",req.session().attribute("deletedStaff"));
             req.session().removeAttribute("deletedStaff");
+            model.put("assignedStaff",req.session().attribute("assignedStaff"));
+            req.session().removeAttribute("assignedStaff");
             return new ModelAndView(model,"staff.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -131,7 +141,8 @@ public class App {
             String firstName = req.queryParams("firstName");
             String lastName  = req.queryParams("lastName");
             int departmentId = Integer.parseInt(req.queryParams("departmentId"));
-            Member member = new Member(firstName,lastName,departmentId);
+            int roleId = Integer.parseInt(req.queryParams("roleId"));
+            Member member = new Member(firstName,lastName,departmentId,roleId);
             memberService.addMember(member);
             req.session().attribute("createdStaff","Staff Member was added successfully!");
             res.redirect("/staff");
@@ -143,10 +154,14 @@ public class App {
             int memberId  = Integer.parseInt(req.params("id"));
             Member member = memberService.getMemberById(memberId);
             model.put("member",member);
+            Role specificRole     = roleService.getRoleById(member.getRoleId());
+            model.put("role",specificRole);
             Department department = departmentService.getDepartmentById(member.getDepartmentId());
             model.put("department",department);
             List<Department> departments = departmentService.getAllDepartments();
             model.put("departments",departments);
+            List<Role> roles = roleService.getAllRoles();
+            model.put("roles",roles);
             return new ModelAndView(model,"edit_staff.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -156,7 +171,8 @@ public class App {
             String firstName = req.queryParams("firstName");
             String lastName  = req.queryParams("lastName");
             int departmentId = Integer.parseInt(req.queryParams("departmentId"));
-            memberService.updateMember(memberId,firstName,lastName,departmentId);
+            int roleId       = Integer.parseInt(req.queryParams("roleId"));
+            memberService.updateMember(memberId,firstName,lastName,departmentId,roleId);
             req.session().attribute("updatedStaff","Staff Member was updated successfully!");
             res.redirect("/staff");
             return null;
@@ -205,6 +221,14 @@ public class App {
             int roleId = Integer.parseInt(req.params("id"));
             roleService.updateRole(roleId,req.queryParams("name"));
             req.session().attribute("updatedRole","Role was updated successfully!");
+            res.redirect("/roles");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
+        get("/roles/:id/delete", (req, res) -> {
+            int roleId = Integer.parseInt(req.params("id"));
+            roleService.deleteRoleById(roleId);
+            req.session().attribute("deletedRole","Role was deleted successfully!");
             res.redirect("/roles");
             return null;
         }, new HandlebarsTemplateEngine());

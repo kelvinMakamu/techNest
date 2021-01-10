@@ -1,6 +1,7 @@
 package departments;
 
 import members.Member;
+import members.MemberPayload;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -25,12 +26,15 @@ public class DepartmentService implements DepartmentDao{
     }
 
     @Override
-    public List<Member> getAllDepartmentMembers(int departmentId) {
-        String query = "SELECT * FROM members WHERE departmentId=:id ORDER BY id DESC";
+    public List<MemberPayload> getAllDepartmentMembers(int departmentId) {
+        String query = "SELECT members.id AS memberId, members.firstName AS firstName, members.lastName As lastName," +
+                "departments.id AS departmentId, departments.name AS departmentName, roles.name AS roleName " +
+                " FROM members,departments,roles WHERE members.roleId=roles.id AND members.departmentId=departments.id " +
+                " AND members.departmentId=:id ORDER BY members.id DESC";
         try(Connection connection = sql2o.open()){
             return connection.createQuery(query)
                     .addParameter("id",departmentId)
-                    .executeAndFetch(Member.class);
+                    .executeAndFetch(MemberPayload.class);
         }
     }
 

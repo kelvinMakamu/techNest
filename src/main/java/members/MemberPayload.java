@@ -12,14 +12,16 @@ public class MemberPayload {
     private String lastName;
     private int departmentId;
     private String departmentName;
-    private List<Role> roleList;
+    private String roleName;
 
-    public MemberPayload(int memberId,String firstName,String lastName,int departmentId,String departmentName){
+    public MemberPayload(int memberId,String firstName,String lastName,int departmentId,
+                         String departmentName,String roleName){
         this.memberId       = memberId;
         this.firstName      = firstName;
         this.lastName       = lastName;
         this.departmentId   = departmentId;
         this.departmentName = departmentName;
+        this.roleName       = roleName;
     }
 
     public int getMemberId(){
@@ -62,12 +64,12 @@ public class MemberPayload {
         this.departmentName = departmentName;
     }
 
-    public List<Role> getRoleList() {
-        return roleList;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setRoleList(List<Role> roleList) {
-        this.roleList = roleList;
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
     }
 
     @Override
@@ -75,11 +77,11 @@ public class MemberPayload {
         if (this == o) return true;
         if (!(o instanceof MemberPayload)) return false;
         MemberPayload that = (MemberPayload) o;
-        return getDepartmentId() == that.getDepartmentId() && getFirstName().equals(that.getFirstName()) && getLastName().equals(that.getLastName()) && getDepartmentName().equals(that.getDepartmentName()) && getRoleList().equals(that.getRoleList());
+        return getMemberId() == that.getMemberId() && getDepartmentId() == that.getDepartmentId() && getFirstName().equals(that.getFirstName()) && getLastName().equals(that.getLastName()) && getDepartmentName().equals(that.getDepartmentName()) && getRoleName().equals(that.getRoleName());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getFirstName(), getLastName(), getDepartmentId(), getDepartmentName(), getRoleList());
+        return Objects.hash(getMemberId(), getFirstName(), getLastName(), getDepartmentId(), getDepartmentName(), getRoleName());
     }
 }

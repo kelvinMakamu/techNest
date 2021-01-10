@@ -44,6 +44,6 @@ public class MemberTest {
     }
     // HELPER METHOD
     public Member setupNewMember(){
-        return new Member("Kelvin","Makamu",7);
+        return new Member("Kelvin","Makamu",7,1);
     }
 }

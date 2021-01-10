@@ -64,7 +64,7 @@ public class MemberServiceTest {
         String originalFirstName = member.getFirstName();
         String originalLastName  = member.getLastName();
         memberService.addMember(member);
-        memberService.updateMember(member.getId(), "Justin","Nyamohanga",7);
+        memberService.updateMember(member.getId(), "Justin","Nyamohanga",7,1);
         Member foundMember      = memberService.getMemberById(member.getId());
         String updatedFirstName = foundMember.getFirstName();
         String updatedLastName = foundMember.getLastName();
@@ -89,6 +89,6 @@ public class MemberServiceTest {
     }
 
     public Member setupNewMember(){
-        return new Member("Kelvin","Makamu",7);
+        return new Member("Kelvin","Makamu",7,1);
     }
 }

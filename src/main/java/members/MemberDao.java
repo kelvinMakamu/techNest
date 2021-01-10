@@ -10,7 +10,7 @@ public interface MemberDao {
     // GET RESPECTIVE MEMBER BY ID
     Member getMemberById(int memberId);
     // UPDATE RESPECTIVE MEMBER
-    void updateMember(int memberId, String firstName, String lastName, int departmentId);
+    void updateMember(int memberId, String firstName, String lastName, int departmentId, int roleId);
     // DELETE RESPECTIVE MEMBER
     void deleteMemberById(int memberId);
     // DELETE ALL MEMBERS

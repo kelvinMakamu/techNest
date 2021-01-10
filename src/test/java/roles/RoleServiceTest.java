@@ -58,6 +58,17 @@ public class RoleServiceTest {
     }
 
     @Test
+    public void updateRole_EditRoleName(){
+        Role role          = setupNewRole();
+        String initialName = role.getName();
+        roleService.addRole(role);
+        roleService.updateRole(role.getId(), "Secretary");
+        Role foundRole     = roleService.getRoleById(role.getId());
+        String updatedName = foundRole.getName();
+        assertNotEquals(initialName,updatedName);
+    }
+
+    @Test
     public void deleteRoles_deleteAvailableRoles(){
         Role role  = setupNewRole();
         roleService.addRole(role);

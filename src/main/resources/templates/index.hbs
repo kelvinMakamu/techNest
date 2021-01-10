@@ -1,19 +1,50 @@
 {{#partial "title"}}
-    All Technology Staff Members
+    View Technology Division Staff
 {{/partial}}
-
 {{#partial "content"}}
-
-    <h1> List o' stuff to do!</h1>
-
-    {{#if tasks}}
-        {{#each tasks }}
-            <p><a href="/categories/{{categoryId}}/tasks/{{id}}">{{description}}</a></p>
-        {{/each}}
-    {{else}}
-        <p>No tasks!</p>
+    {{#if message}}
+        <div class="alert alert-success">{{message}}</div>
     {{/if}}
-
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-sm-12">
+            <h4> Technology Division Staff</h4>
+            <hr/>
+            <div class="container">
+                {{#if departments}}
+                    <div class="row">
+                        {{#each departments }}
+                            <div class="col-md-4 col-lg-4 col-sm-12 card">
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12 col-sm-12">
+                                        <p class="text-center department-name">{{name}}</p>
+                                    </div>
+                                    <div class="col-md-12 col-lg-12 col-sm-12">
+                                        <hr>
+                                    </div>
+                                    <div class="col-md-4 col-lg-4 col-sm-12">
+                                        <a href="/departments/{{id}}/members" class="btn btn-primary btn-sm">View</a>
+                                    </div>
+                                    <div class="col-md-4 col-lg-4 col-sm-12">
+                                        <a href="/departments/{{id}}" class="btn btn-warning btn-sm">Update</a>
+                                    </div>
+                                    <div class="col-md-4 col-lg-4 col-sm-12">
+                                        <a href="/departments/{{id}}/delete" class="btn btn-danger btn-sm link-right">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                {{else}}
+                    <div class="row">
+                        <div class="col-md-12 col-md-12 col-sm-12 card">
+                            <p class="no-department">No staff members available!</p>
+                            <p>Staff details will be populated once members have been added.</p>
+                        </div>
+                    </div>
+                {{/if}}
+            </div>
+        </div>
+    </div>
 {{/partial}}
 
 {{> layout.hbs}}

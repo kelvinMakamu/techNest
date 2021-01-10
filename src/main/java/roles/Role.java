@@ -1,4 +1,4 @@
-package components.roles;
+package roles;
 
 import java.time.LocalDateTime;
 import java.util.Objects;

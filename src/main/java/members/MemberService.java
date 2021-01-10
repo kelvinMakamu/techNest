@@ -16,11 +16,14 @@ public class MemberService implements MemberDao{
     }
 
     @Override
-    public List<Member> getAllMembers() {
-        String query = "SELECT * FROM members ORDER BY id DESC";
+    public List<MemberPayload> getAllMembers() {
+        String query = "SELECT members.id AS memberId, members.firstName AS firstName, members.lastName As lastName," +
+                "departments.id AS departmentId, departments.name AS departmentName" +
+                " FROM members,departments WHERE members.departmentId=departments.id" +
+                " ORDER BY members.id DESC";
         try(Connection connection = sql2o.open()){
             return connection.createQuery(query)
-                    .executeAndFetch(Member.class);
+                    .executeAndFetch(MemberPayload.class);
         }
     }
 

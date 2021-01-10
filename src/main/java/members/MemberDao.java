@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface MemberDao {
     // LIST ALL AVAILABLE MEMBERS
-    List<Member> getAllMembers();
+    List<MemberPayload> getAllMembers();
     // ADD NEW MEMBER
     void addMember(Member member);
     // GET RESPECTIVE MEMBER BY ID

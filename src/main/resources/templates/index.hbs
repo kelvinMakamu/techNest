@@ -2,9 +2,6 @@
     View Technology Division Staff
 {{/partial}}
 {{#partial "content"}}
-    {{#if message}}
-        <div class="alert alert-success">{{message}}</div>
-    {{/if}}
     <div class="row">
         <div class="col-md-12 col-lg-12 col-sm-12">
             <h4> Technology Division Staff</h4>
@@ -17,15 +14,16 @@
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12">
                                         <p class="text-center department-name">{{firstName}} {{lastName}}</p>
+                                        <h4 class="text-center dept-desc">{{departmentName}}</h4>
                                     </div>
                                     <div class="col-md-12 col-lg-12 col-sm-12">
                                         <hr>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-sm-12">
-                                        <a href="/staff/{{id}}" class="btn btn-warning btn-sm">Update</a>
+                                        <a href="/staff/{{memberId}}" class="btn btn-warning btn-sm">Update</a>
                                     </div>
                                     <div class="col-md-6 col-lg-6 col-sm-12">
-                                        <a href="/staff/{{id}}/delete" class="btn btn-danger btn-sm">Delete</a>
+                                        <a href="/staff/{{memberId}}/delete" class="btn btn-danger btn-sm">Delete</a>
                                     </div>
                                 </div>
                             </div>

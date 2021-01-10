@@ -1,4 +1,4 @@
-package components.roles;
+package roles;
 
 public class RoleService {
 }

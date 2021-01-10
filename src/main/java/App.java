@@ -1,6 +1,7 @@
 import departments.Department;
 import departments.DepartmentService;
 import members.Member;
+import members.MemberPayload;
 import members.MemberService;
 import org.sql2o.Sql2o;
 import spark.ModelAndView;
@@ -35,7 +36,7 @@ public class App {
             Map<String,Object> model  = new HashMap<>();
             List<Department> departments = departmentService.getAllDepartments();
             model.put("departments",departments);
-            List<Member> members = memberService.getAllMembers();
+            List<MemberPayload> members = memberService.getAllMembers();
             model.put("members",members);
             return new ModelAndView(model,"index.hbs");
         }, new HandlebarsTemplateEngine());
@@ -112,7 +113,7 @@ public class App {
             Map<String,Object> model = new HashMap<>();
             List<Department> departments = departmentService.getAllDepartments();
             model.put("departments",departments);
-            List<Member> members = memberService.getAllMembers();
+            List<MemberPayload> members = memberService.getAllMembers();
             model.put("members",members);
             model.put("createdStaff",req.session().attribute("createdStaff"));
             req.session().removeAttribute("createdStaff");

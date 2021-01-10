@@ -72,6 +72,10 @@ select{
   line-height: 24px;
 }
 
+.dept-desc{
+    color: #439894 !important;
+}
+
 strong{
     text-transform: capitalize !important;
 }

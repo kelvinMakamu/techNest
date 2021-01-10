@@ -1,8 +1,10 @@
 package members;
 
+import departments.Department;
 import departments.DepartmentService;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Test;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
@@ -25,6 +27,18 @@ public class MemberServiceTest {
     public void tearDown() throws Exception {
         memberService.deleteMembers();
         connection.close();
+    }
+
+    @Test
+    public void addMember_addingSetsId(){
+        Member member = setupNewMember();
+        int originalID = member.getId();
+        memberService.addMember(member);
+        assertNotEquals(originalID, member.getId());
+    }
+
+    public Member setupNewMember(){
+        return new Member("Kelvin","Makamu",7);
     }
 
 

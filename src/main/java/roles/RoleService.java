@@ -1,5 +1,6 @@
 package roles;
 
+import departments.Department;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -16,7 +17,11 @@ public class RoleService implements RoleDao{
 
     @Override
     public List<Role> getAllRoles() {
-        return null;
+        String query = "SELECT * FROM roles ORDER BY id DESC";
+        try(Connection connection = sql2o.open()){
+            return connection.createQuery(query)
+                    .executeAndFetch(Role.class);
+        }
     }
 
     @Override

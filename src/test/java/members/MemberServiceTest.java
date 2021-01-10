@@ -73,6 +73,14 @@ public class MemberServiceTest {
     }
 
     @Test
+    public void deleteDepartmentById_deleteSpecificDepartment(){
+        Member member = setupNewMember();
+        memberService.addMember(member);
+        memberService.deleteMemberById(member.getId());
+        assertEquals(0,memberService.getAllMembers().size());
+    }
+
+    @Test
     public void deleteMembers_deleteAvailableMembers(){
         Member member = setupNewMember();
         memberService.addMember(member);

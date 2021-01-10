@@ -50,7 +50,15 @@ public class RoleService implements RoleDao{
 
     @Override
     public void updateRole(int roleId, String name) {
-
+        String query = "UPDATE roles SET name=:name WHERE id=:id";
+        try(Connection connection = sql2o.open()){
+            connection.createQuery(query)
+                    .addParameter("id",roleId)
+                    .addParameter("name",name)
+                    .executeUpdate();
+        }catch (Sql2oException ex){
+            System.out.println("Database Error "+ex.getLocalizedMessage());
+        }
     }
 
     @Override

@@ -42,6 +42,13 @@ public class RoleServiceTest {
     }
 
     @Test
+    public void getAllRoles_CountAddedRoles(){
+        Role role  = setupNewRole();
+        roleService.addRole(role);
+        assertEquals(1,roleService.getAllRoles().size());
+    }
+
+    @Test
     public void deleteRoles_deleteAvailableRoles(){
         Role role  = setupNewRole();
         roleService.addRole(role);

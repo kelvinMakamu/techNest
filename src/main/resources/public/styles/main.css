@@ -1,4 +1,4 @@
-input, input:focus, textarea:focus, input.form-control:focus {
+select, input, input:focus, textarea:focus, input.form-control:focus {
     outline:none !important;
     outline-width: 0 !important;
     border-radius: unset !important;
@@ -54,6 +54,10 @@ h2, h3, h4{
 .lead{
     margin-top: 2% !important;
     font-size: 18px !important;
+}
+
+select{
+    text-transform: capitalize !important;
 }
 
 .card {

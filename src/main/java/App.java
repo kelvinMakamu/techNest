@@ -96,9 +96,11 @@ public class App {
         }, new HandlebarsTemplateEngine());
 
         post("/staff", (req, res) -> {
-            String name = req.queryParams("name");
-            Department department = new Department(name);
-            departmentService.addDepartment(department);
+            String firstName = req.queryParams("firstName");
+            String lastName  = req.queryParams("lastName");
+            int departmentId = Integer.parseInt(req.queryParams("departmentId"));
+            Member member = new Member(firstName,lastName,departmentId);
+            memberService.addMember(member);
             res.redirect("/staff");
             return null;
         }, new HandlebarsTemplateEngine());

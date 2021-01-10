@@ -1,6 +1,7 @@
 package members;
 
 import java.time.LocalDateTime;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Member {
@@ -11,8 +12,8 @@ public class Member {
     private LocalDateTime createdAt;
 
     public Member(String firstName, String lastName,int departmentId){
-        this.firstName    = firstName;
-        this.lastName     = lastName;
+        this.firstName    = firstName.toLowerCase();
+        this.lastName     = lastName.toLowerCase();
         this.departmentId = departmentId;
         this.createdAt    = LocalDateTime.now();
     }

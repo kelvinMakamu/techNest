@@ -59,7 +59,7 @@ public class MemberServiceTest {
     }
 
     @Test
-    public void updateDepartment_EditDepartmentName(){
+    public void updateMember_EditMemberDetails(){
         Member member            = setupNewMember();
         String originalFirstName = member.getFirstName();
         String originalLastName  = member.getLastName();
@@ -73,7 +73,7 @@ public class MemberServiceTest {
     }
 
     @Test
-    public void deleteDepartmentById_deleteSpecificDepartment(){
+    public void deleteMemberById_deleteSpecificMember(){
         Member member = setupNewMember();
         memberService.addMember(member);
         memberService.deleteMemberById(member.getId());

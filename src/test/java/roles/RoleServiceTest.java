@@ -35,6 +35,14 @@ public class RoleServiceTest {
         assertNotEquals(originalID, role.getId());
     }
 
+    @Test
+    public void deleteRoles_deleteAvailableRoles(){
+        Role role  = setupNewRole();
+        roleService.addRole(role);
+        roleService.deleteRoles();
+        assertEquals(0,roleService.getAllRoles().size());
+    }
+
     // HELPER METHODS
     public Role setupNewRole(){
         return new Role("Chairman");

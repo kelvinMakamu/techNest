@@ -1,5 +1,6 @@
 package members;
 
+import departments.Department;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,6 +21,12 @@ public class MemberTest {
     public void NewMember_InstantiatesCorrectly_true(){
         Member member = setupNewMember();
         assertEquals(true, member instanceof Member);
+    }
+
+    @Test
+    public void getFirstName_InstantiatesWithName_Kelvin(){
+        Member member = setupNewMember();
+        assertEquals("Kelvin",member.getFirstName());
     }
 
     // HELPER METHOD

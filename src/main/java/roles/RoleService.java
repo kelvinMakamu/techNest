@@ -50,6 +50,12 @@ public class RoleService implements RoleDao{
 
     @Override
     public void deleteRoles() {
-
+        String query = "DELETE FROM roles";
+        try(Connection connection = sql2o.open()){
+            connection.createQuery(query)
+                    .executeUpdate();
+        }catch(Sql2oException ex){
+            System.out.println("Database Error "+ex.getLocalizedMessage());
+        }
     }
 }

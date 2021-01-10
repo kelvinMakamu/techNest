@@ -1,4 +1,4 @@
-package components.members;
+package members;
 
 import java.time.LocalDateTime;
 import java.util.Objects;

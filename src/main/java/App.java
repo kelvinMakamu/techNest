@@ -182,5 +182,14 @@ public class App {
             req.session().removeAttribute("deletedRole");
             return new ModelAndView(model,"role.hbs");
         }, new HandlebarsTemplateEngine());
+
+        post("/roles", (req, res) -> {
+            String name = req.queryParams("name");
+            Role role   = new Role(name);
+            roleService.addRole(role);
+            req.session().attribute("createdRole","Role was added successfully!");
+            res.redirect("/roles");
+            return null;
+        }, new HandlebarsTemplateEngine());
     }
 }

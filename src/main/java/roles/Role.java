@@ -1,6 +1,7 @@
 package roles;
 
 import java.time.LocalDateTime;
+import java.util.Locale;
 import java.util.Objects;
 
 public class Role {
@@ -9,7 +10,7 @@ public class Role {
     private LocalDateTime createdAt;
 
     public Role(String name){
-        this.name      = name;
+        this.name      = name.toLowerCase();
         this.createdAt = LocalDateTime.now();
     }
 

@@ -24,6 +24,7 @@ public class RoleServiceTest {
 
     @After
     public void tearDown() throws Exception {
+        roleService.deleteRoles();
         connection.close();
     }
 
@@ -33,6 +34,11 @@ public class RoleServiceTest {
         int originalID = role.getId();
         roleService.addRole(role);
         assertNotEquals(originalID, role.getId());
+    }
+
+    @Test
+    public void getAllRoles_ReturningForNoRoles(){
+        assertEquals(0,roleService.getAllRoles().size());
     }
 
     @Test

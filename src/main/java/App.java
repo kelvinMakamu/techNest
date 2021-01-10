@@ -33,6 +33,8 @@ public class App {
 
         get("/",(req,res) -> {
             Map<String,Object> model  = new HashMap<>();
+            List<Department> departments = departmentService.getAllDepartments();
+            model.put("departments",departments);
             List<Member> members = memberService.getAllMembers();
             model.put("members",members);
             return new ModelAndView(model,"index.hbs");
@@ -73,10 +75,21 @@ public class App {
             Map<String,Object> model = new HashMap<>();
             int departmentId = Integer.parseInt(req.params("id"));
             Department department = departmentService.getDepartmentById(departmentId);
-            model.put("department",department.getName());
+            model.put("department",department);
             List<Member> members  = departmentService.getAllDepartmentMembers(departmentId);
             model.put("members",members);
             return new ModelAndView(model,"department_members.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/departments/:id/members", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            int departmentId = Integer.parseInt(req.params("id"));
+            String firstName = req.queryParams("firstName");
+            String lastName  = req.queryParams("lastName");
+            Member member = new Member(firstName,lastName,departmentId);
+            memberService.addMember(member);
+            res.redirect("/departments/"+departmentId+"/members");
+            return null;
         }, new HandlebarsTemplateEngine());
 
         get("/departments/:id/delete", (req, res) -> {

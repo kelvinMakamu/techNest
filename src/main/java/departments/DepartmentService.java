@@ -26,7 +26,7 @@ public class DepartmentService implements DepartmentDao{
 
     @Override
     public List<Member> getAllDepartmentMembers(int departmentId) {
-        String query = "SELECT * FROM members WHERE departmentId=:id";
+        String query = "SELECT * FROM members WHERE departmentId=:id ORDER BY id DESC";
         try(Connection connection = sql2o.open()){
             return connection.createQuery(query)
                     .addParameter("id",departmentId)

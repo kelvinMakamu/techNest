@@ -9,13 +9,13 @@
         <div class="col-md-3 col-lg-3 col-sm-12 department-form">
             <h4>New Staff Member</h4>
             <hr>
-            <form method="post" action="/members">
+            <form method="post" action="/departments/{{department.id}}/members">
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12">
                         <div class="form-group">
                             <label>First Name</label>
                             <input class="form-control" type="text" placeholder="First Name"
-                                   name="first_name" required>
+                                   name="firstName" required>
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                         <div class="form-group">
                             <label>Last Name</label>
                             <input class="form-control" type="text" placeholder="Last Name"
-                                   name="last_name" required>
+                                   name="lastName" required>
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
             </form>
         </div>
         <div class="col-md-8 col-lg-8 col-sm-12">
-            <h4 class="text-center"> {{department}} Department Staff Members</h4>
+            <h4 class="text-center"> {{department.name}} Department Staff Members</h4>
             <hr/>
             <div class="container department-container">
                 {{#if members}}
@@ -47,19 +47,16 @@
                             <div class="col-md-5 col-lg-5 col-sm-12 card">
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12">
-                                        <p class="text-center department-name">{{name}}</p>
+                                        <p class="text-center department-name">{{firstName}} {{lastName}}</p>
                                     </div>
                                     <div class="col-md-12 col-lg-12 col-sm-12">
                                         <hr>
                                     </div>
-                                    <div class="col-md-4 col-lg-4 col-sm-12">
-                                        <a href="/departments/{{id}}/members" class="btn btn-primary btn-sm">View</a>
-                                    </div>
-                                    <div class="col-md-4 col-lg-4 col-sm-12">
+                                    <div class="col-md-6 col-lg-6 col-sm-12">
                                         <a href="/members/{{id}}" class="btn btn-warning btn-sm">Update</a>
                                     </div>
-                                    <div class="col-md-4 col-lg-4 col-sm-12">
-                                        <a href="/members/{{id}}/delete" class="btn btn-danger btn-sm link-right">Delete</a>
+                                    <div class="col-md-6 col-lg-6 col-sm-12">
+                                        <a href="/members/{{id}}/delete" class="btn btn-danger btn-sm">Delete</a>
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +66,7 @@
                     <div class="row">
                         <div class="col-md-10 col-md-10 col-sm-12 card">
                             <p class="no-department">No staff members available!</p>
-                            <p>Please fill in the form on the left to add a member to <strong>{{department}}</strong> department</p>
+                            <p>Please fill in the form on the left to add a member to <strong>{{department.name}}</strong> department</p>
                         </div>
                     </div>
                 {{/if}}

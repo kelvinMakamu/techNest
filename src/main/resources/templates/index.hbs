@@ -10,25 +10,22 @@
             <h4> Technology Division Staff</h4>
             <hr/>
             <div class="container">
-                {{#if departments}}
+                {{#if members}}
                     <div class="row">
-                        {{#each departments }}
-                            <div class="col-md-4 col-lg-4 col-sm-12 card">
+                        {{#each members }}
+                            <div class="col-md-3 col-lg-3 col-sm-12 card">
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 col-sm-12">
-                                        <p class="text-center department-name">{{name}}</p>
+                                        <p class="text-center department-name">{{firstName}} {{lastName}}</p>
                                     </div>
                                     <div class="col-md-12 col-lg-12 col-sm-12">
                                         <hr>
                                     </div>
-                                    <div class="col-md-4 col-lg-4 col-sm-12">
-                                        <a href="/departments/{{id}}/members" class="btn btn-primary btn-sm">View</a>
+                                    <div class="col-md-6 col-lg-6 col-sm-12">
+                                        <a href="/members/{{id}}" class="btn btn-warning btn-sm">Update</a>
                                     </div>
-                                    <div class="col-md-4 col-lg-4 col-sm-12">
-                                        <a href="/departments/{{id}}" class="btn btn-warning btn-sm">Update</a>
-                                    </div>
-                                    <div class="col-md-4 col-lg-4 col-sm-12">
-                                        <a href="/departments/{{id}}/delete" class="btn btn-danger btn-sm link-right">Delete</a>
+                                    <div class="col-md-6 col-lg-6 col-sm-12">
+                                        <a href="/members/{{id}}/delete" class="btn btn-danger btn-sm">Delete</a>
                                     </div>
                                 </div>
                             </div>

@@ -5,6 +5,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.LocalDateTime;
+
 import static org.junit.Assert.*;
 
 public class RoleTest {
@@ -21,6 +23,18 @@ public class RoleTest {
     public void NewRole_InstantiatesCorrectly_true(){
         Role role = setupNewRole();
         assertEquals(true, role instanceof Role);
+    }
+
+    @Test
+    public void getName_InstantiatesWithName_Chairman(){
+        Role role = setupNewRole();
+        assertEquals("Chairman",role.getName());
+    }
+
+    @Test
+    public void getCreatedAt_InstantiatesWithCurrentTimeToday(){
+        Role role = setupNewRole();
+        assertEquals(LocalDateTime.now().getDayOfWeek(),role.getCreatedAt().getDayOfWeek());
     }
 
     // HELPER

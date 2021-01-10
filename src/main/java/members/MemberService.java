@@ -1,5 +1,6 @@
 package members;
 
+import departments.Department;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -16,7 +17,11 @@ public class MemberService implements MemberDao{
 
     @Override
     public List<Member> getAllMembers() {
-        return null;
+        String query = "SELECT * FROM members ORDER BY id DESC";
+        try(Connection connection = sql2o.open()){
+            return connection.createQuery(query)
+                    .executeAndFetch(Member.class);
+        }
     }
 
     @Override

@@ -37,6 +37,11 @@ public class MemberServiceTest {
         assertNotEquals(originalID, member.getId());
     }
 
+    @Test
+    public void getAllMembers_ReturningForNoMembers(){
+        assertEquals(0,memberService.getAllMembers().size());
+    }
+
     public Member setupNewMember(){
         return new Member("Kelvin","Makamu",7);
     }

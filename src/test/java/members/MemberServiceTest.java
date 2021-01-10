@@ -42,9 +42,15 @@ public class MemberServiceTest {
         assertEquals(0,memberService.getAllMembers().size());
     }
 
+    @Test
+    public void deleteMembers_deleteAvailableMembers(){
+        Member member = setupNewMember();
+        memberService.addMember(member);
+        memberService.deleteMembers();
+        assertEquals(0,memberService.getAllMembers().size());
+    }
+
     public Member setupNewMember(){
         return new Member("Kelvin","Makamu",7);
     }
-
-
 }

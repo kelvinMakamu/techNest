@@ -1,5 +1,6 @@
 package members;
 
+import departments.Department;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -38,6 +39,13 @@ public class MemberServiceTest {
     @Test
     public void getAllMembers_ReturningForNoMembers(){
         assertEquals(0,memberService.getAllMembers().size());
+    }
+
+    @Test
+    public void getAllMembers_CountAddedMembers(){
+        Member member = setupNewMember();
+        memberService.addMember(member);
+        assertEquals(1,memberService.getAllMembers().size());
     }
 
     @Test

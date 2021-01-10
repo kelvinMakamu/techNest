@@ -28,7 +28,7 @@ public class RoleTest {
     @Test
     public void getName_InstantiatesWithName_Chairman(){
         Role role = setupNewRole();
-        assertEquals("Chairman",role.getName());
+        assertEquals("chairman",role.getName());
     }
 
     @Test
@@ -39,7 +39,7 @@ public class RoleTest {
 
     // HELPER
     public Role setupNewRole(){
-        return new Role("Chairman");
+        return new Role("chairman");
     }
 
 }

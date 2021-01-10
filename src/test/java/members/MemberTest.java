@@ -28,13 +28,13 @@ public class MemberTest {
     @Test
     public void getFirstName_InstantiatesWithName_Kelvin(){
         Member member = setupNewMember();
-        assertEquals("Kelvin",member.getFirstName());
+        assertEquals("kelvin",member.getFirstName());
     }
 
     @Test
     public void getLastName_InstantiatesWithName_Makamu(){
         Member member = setupNewMember();
-        assertEquals("Makamu",member.getLastName());
+        assertEquals("makamu",member.getLastName());
     }
 
     @Test
@@ -44,6 +44,6 @@ public class MemberTest {
     }
     // HELPER METHOD
     public Member setupNewMember(){
-        return new Member("Kelvin","Makamu",7,1);
+        return new Member("kelvin","makamu",7,1);
     }
 }

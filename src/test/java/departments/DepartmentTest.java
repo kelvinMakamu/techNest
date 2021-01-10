@@ -27,7 +27,7 @@ public class DepartmentTest {
     @Test
     public void getName_InstantiatesWithName_Business_Engagement(){
         Department department = setupNewDepartment();
-        assertEquals("Business Engagement",department.getName());
+        assertEquals("business engagement",department.getName());
     }
 
     @Test
@@ -37,6 +37,6 @@ public class DepartmentTest {
     }
 
     public Department setupNewDepartment(){
-        return new Department("Business Engagement");
+        return new Department("business engagement");
     }
 }

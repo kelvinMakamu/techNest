@@ -140,5 +140,12 @@ public class App {
             res.redirect("/staff");
             return null;
         }, new HandlebarsTemplateEngine());
+
+        get("/staff/:id/delete", (req, res) -> {
+            int memberId = Integer.parseInt(req.params("id"));
+            memberService.deleteMemberById(memberId);
+            res.redirect("/staff");
+            return null;
+        }, new HandlebarsTemplateEngine());
     }
 }

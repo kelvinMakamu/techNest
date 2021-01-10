@@ -49,6 +49,22 @@ public class App {
             return null;
         }, new HandlebarsTemplateEngine());
 
+        get("/departments/:id", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            int departmentId = Integer.parseInt(req.params("id"));
+            Department department = departmentService.getDepartmentById(departmentId);
+            model.put("department",department);
+            return new ModelAndView(model,"edit_department.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/departments/:id", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            int departmentId = Integer.parseInt(req.params("id"));
+            departmentService.updateDepartment(departmentId,req.queryParams("name"));
+            res.redirect("/departments");
+            return null;
+        }, new HandlebarsTemplateEngine());
+
         get("/departments/:id/members", (req, res) -> {
             Map<String,Object> model = new HashMap<>();
             int departmentId = Integer.parseInt(req.params("id"));

@@ -191,5 +191,22 @@ public class App {
             res.redirect("/roles");
             return null;
         }, new HandlebarsTemplateEngine());
+
+        get("/roles/:id", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            int roleId = Integer.parseInt(req.params("id"));
+            Role role = roleService.getRoleById(roleId);
+            model.put("role",role);
+            return new ModelAndView(model,"edit_role.hbs");
+        }, new HandlebarsTemplateEngine());
+
+        post("/roles/:id", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            int roleId = Integer.parseInt(req.params("id"));
+            roleService.updateRole(roleId,req.queryParams("name"));
+            req.session().attribute("updatedRole","Role was updated successfully!");
+            res.redirect("/roles");
+            return null;
+        }, new HandlebarsTemplateEngine());
     }
 }

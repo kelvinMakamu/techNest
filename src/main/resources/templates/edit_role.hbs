@@ -1,0 +1,32 @@
+{{#partial "title"}}
+    Update Role
+{{/partial}}
+
+{{#partial "content"}}
+    <div class="row">
+        <div class="col-md-6 col-lg-6 col-sm-12 card">
+            <h4>Update Role</h4>
+            <hr>
+            <form method="post" action="/roles/{{role.id}}">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label>Department Name</label>
+                            <input class="form-control" type="text" placeholder="Role Name"
+                                   name="name"  value="{{role.name}}" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <input class="btn btn-success" type="submit" value="Update Role">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{{/partial}}
+
+{{> layout.hbs}}

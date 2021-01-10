@@ -129,5 +129,16 @@ public class App {
             model.put("departments",departments);
             return new ModelAndView(model,"edit_staff.hbs");
         }, new HandlebarsTemplateEngine());
+
+        post("/staff/:id", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            int memberId     = Integer.parseInt(req.params("id"));
+            String firstName = req.queryParams("firstName");
+            String lastName  = req.queryParams("lastName");
+            int departmentId = Integer.parseInt(req.queryParams("departmentId"));
+            memberService.updateMember(memberId,firstName,lastName,departmentId);
+            res.redirect("/staff");
+            return null;
+        }, new HandlebarsTemplateEngine());
     }
 }

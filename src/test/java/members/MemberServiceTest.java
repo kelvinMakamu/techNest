@@ -49,6 +49,16 @@ public class MemberServiceTest {
     }
 
     @Test
+    public void getMemberById_getSpecificMember(){
+        Member member = setupNewMember();
+        memberService.addMember(member);
+        Member foundMember = memberService.getMemberById(member.getId());
+        assertEquals(member.getId(),foundMember.getId());
+        assertEquals(member.getFirstName(),foundMember.getFirstName());
+        assertEquals(member.getLastName(),foundMember.getLastName());
+    }
+
+    @Test
     public void deleteMembers_deleteAvailableMembers(){
         Member member = setupNewMember();
         memberService.addMember(member);

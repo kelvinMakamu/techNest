@@ -1,5 +1,9 @@
 package members;
 
+import departments.Department;
+import departments.DepartmentService;
+import org.sql2o.Sql2o;
+
 import java.time.LocalDateTime;
 import java.util.Locale;
 import java.util.Objects;
@@ -10,6 +14,10 @@ public class Member {
     private String firstName;
     private String lastName;
     private LocalDateTime createdAt;
+
+    String DB_URL = "jdbc:postgresql://localhost:5432/technest";
+    Sql2o sql2o   = new Sql2o(DB_URL, null, null);
+    DepartmentService departmentService = new DepartmentService(sql2o);
 
     public Member(String firstName, String lastName,int departmentId){
         this.firstName    = firstName.toLowerCase();

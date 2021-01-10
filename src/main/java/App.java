@@ -117,5 +117,17 @@ public class App {
             res.redirect("/staff");
             return null;
         }, new HandlebarsTemplateEngine());
+
+        get("/staff/:id", (req, res) -> {
+            Map<String,Object> model = new HashMap<>();
+            int memberId  = Integer.parseInt(req.params("id"));
+            Member member = memberService.getMemberById(memberId);
+            model.put("member",member);
+            Department department = departmentService.getDepartmentById(member.getDepartmentId());
+            model.put("department",department);
+            List<Department> departments = departmentService.getAllDepartments();
+            model.put("departments",departments);
+            return new ModelAndView(model,"edit_staff.hbs");
+        }, new HandlebarsTemplateEngine());
     }
 }

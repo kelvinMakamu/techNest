@@ -44,6 +44,12 @@ public class App {
             Map<String,Object> model     = new HashMap<>();
             List<Department> departments = departmentService.getAllDepartments();
             model.put("departments",departments);
+            model.put("createdDepartment",req.session().attribute("createdDepartment"));
+            req.session().removeAttribute("createdDepartment");
+            model.put("updatedDepartment",req.session().attribute("updatedDepartment"));
+            req.session().removeAttribute("updatedDepartment");
+            model.put("deletedDepartment",req.session().attribute("deletedDepartment"));
+            req.session().removeAttribute("deletedDepartment");
             return new ModelAndView(model,"department.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -51,6 +57,7 @@ public class App {
             String name = req.queryParams("name");
             Department department = new Department(name);
             departmentService.addDepartment(department);
+            req.session().attribute("createdDepartment","Department was added successfully!");
             res.redirect("/departments");
             return null;
         }, new HandlebarsTemplateEngine());
@@ -67,6 +74,7 @@ public class App {
             Map<String,Object> model = new HashMap<>();
             int departmentId = Integer.parseInt(req.params("id"));
             departmentService.updateDepartment(departmentId,req.queryParams("name"));
+            req.session().attribute("updatedDepartment","Department was updated successfully!");
             res.redirect("/departments");
             return null;
         }, new HandlebarsTemplateEngine());
@@ -95,6 +103,7 @@ public class App {
         get("/departments/:id/delete", (req, res) -> {
             int departmentId = Integer.parseInt(req.params("id"));
             departmentService.deleteDepartmentById(departmentId);
+            req.session().attribute("deletedDepartment","Department was deleted successfully!");
             res.redirect("/departments");
             return null;
         }, new HandlebarsTemplateEngine());
@@ -105,6 +114,12 @@ public class App {
             model.put("departments",departments);
             List<Member> members = memberService.getAllMembers();
             model.put("members",members);
+            model.put("createdStaff",req.session().attribute("createdStaff"));
+            req.session().removeAttribute("createdStaff");
+            model.put("updatedStaff",req.session().attribute("updatedStaff"));
+            req.session().removeAttribute("updatedStaff");
+            model.put("deletedStaff",req.session().attribute("deletedStaff"));
+            req.session().removeAttribute("deletedStaff");
             return new ModelAndView(model,"staff.hbs");
         }, new HandlebarsTemplateEngine());
 
@@ -114,6 +129,7 @@ public class App {
             int departmentId = Integer.parseInt(req.queryParams("departmentId"));
             Member member = new Member(firstName,lastName,departmentId);
             memberService.addMember(member);
+            req.session().attribute("createdStaff","Staff Member was added successfully!");
             res.redirect("/staff");
             return null;
         }, new HandlebarsTemplateEngine());
@@ -137,6 +153,7 @@ public class App {
             String lastName  = req.queryParams("lastName");
             int departmentId = Integer.parseInt(req.queryParams("departmentId"));
             memberService.updateMember(memberId,firstName,lastName,departmentId);
+            req.session().attribute("updatedStaff","Staff Member was updated successfully!");
             res.redirect("/staff");
             return null;
         }, new HandlebarsTemplateEngine());
@@ -144,6 +161,7 @@ public class App {
         get("/staff/:id/delete", (req, res) -> {
             int memberId = Integer.parseInt(req.params("id"));
             memberService.deleteMemberById(memberId);
+            req.session().attribute("deletedStaff","Staff Member was deleted successfully!");
             res.redirect("/staff");
             return null;
         }, new HandlebarsTemplateEngine());

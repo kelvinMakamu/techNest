@@ -3,9 +3,33 @@
 {{/partial}}
 
 {{#partial "content"}}
-    {{#if message}}
-        <div class="alert alert-success">{{message}}</div>
+    {{#if createdStaff}}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{createdStaff}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     {{/if}}
+
+    {{#if updatedStaff}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{updatedStaff}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {{/if}}
+
+    {{#if deletedStaff}}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{deletedStaff}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {{/if}}
+
     <div class="row">
         <div class="col-md-3 col-lg-3 col-sm-12 department-form">
             <h4>New Staff</h4>

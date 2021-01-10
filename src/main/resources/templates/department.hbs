@@ -2,9 +2,33 @@
     Create Department and View Available Technology Departments
 {{/partial}}
 {{#partial "content"}}
-    {{#if message}}
-        <div class="alert alert-success">{{message}}</div>
+    {{#if createdDepartment}}
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{createdDepartment}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
     {{/if}}
+
+    {{#if updatedDepartment}}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{updatedDepartment}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {{/if}}
+
+    {{#if deletedDepartment}}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{deletedDepartment}}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {{/if}}
+
     <div class="row">
         <div class="col-md-3 col-lg-3 col-sm-12 department-form">
                 <h4>New Department</h4>

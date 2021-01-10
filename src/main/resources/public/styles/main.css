@@ -74,6 +74,8 @@ select{
 
 .dept-desc{
     color: #439894 !important;
+    font-size: 15px !important;
+    font-weight: thin !important;
 }
 
 strong{
@@ -110,8 +112,8 @@ strong{
 
 .footer{
     margin-top: 4% !important;
-    margin-bottom: -5% !important;
-    padding: 3% 2% 2% 2% !important;
+    margin-bottom: -2% !important;
+    padding: 2% 2% 0.5% 2% !important;
     background: #dedede !important;
-    height: 2.5% !important;
+    height: 1.5% !important;
 }

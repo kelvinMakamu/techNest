@@ -16,10 +16,6 @@ public class Member {
     private String lastName;
     private LocalDateTime createdAt;
 
-    String DB_URL = "jdbc:postgresql://localhost:5432/technest";
-    Sql2o sql2o   = new Sql2o(DB_URL, null, null);
-    DepartmentService departmentService = new DepartmentService(sql2o);
-
     public Member(String firstName,String lastName,int departmentId,int roleId){
         this.firstName    = firstName.toLowerCase();
         this.lastName     = lastName.toLowerCase();

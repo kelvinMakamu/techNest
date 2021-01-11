@@ -77,11 +77,11 @@ public class Member {
         if (this == o) return true;
         if (!(o instanceof Member)) return false;
         Member member = (Member) o;
-        return getId() == member.getId() && getDepartmentId() == member.getDepartmentId() && getFirstName().equals(member.getFirstName()) && getLastName().equals(member.getLastName()) && getCreatedAt().equals(member.getCreatedAt());
+        return getId() == member.getId() && getDepartmentId() == member.getDepartmentId() && getRoleId() == member.getRoleId() && getFirstName().equals(member.getFirstName()) && getLastName().equals(member.getLastName()) && getCreatedAt().equals(member.getCreatedAt());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getDepartmentId(), getFirstName(), getLastName(), getCreatedAt());
+        return Objects.hash(getId(), getDepartmentId(), getRoleId(), getFirstName(), getLastName(), getCreatedAt());
     }
 }

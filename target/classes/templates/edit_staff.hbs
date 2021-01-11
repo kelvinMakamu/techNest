@@ -1,0 +1,70 @@
+{{#partial "title"}}
+    Update Staff Member Details, and Assign Role
+{{/partial}}
+
+{{#partial "content"}}
+    {{#if message}}
+        <div class="alert alert-success">{{message}}</div>
+    {{/if}}
+    <div class="row">
+        <div class="col-md-4 col-lg-4 col-sm-12 card">
+            <h4>Update Staff</h4>
+            <hr>
+            <form method="post" action="/staff/{{member.id}}">
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <input class="form-control" type="text" placeholder="First Name"
+                                   name="firstName" value="{{member.firstName}}" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <input class="form-control" type="text" placeholder="Last Name"
+                                   name="lastName" value="{{member.lastName}}" required>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label>Select Department</label>
+                            <select id="departmentId" name="departmentId" class="form-control">
+                                <option value="{{department.id}}" class="dept-select">{{department.name}}</option>
+                                {{#each departments}}
+                                    <option value="{{id}}" class="dept-select">{{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <label>Select Role</label>
+                            <select id="roleId" name="roleId" class="form-control">
+                                <option value="{{role.id}}" class="dept-select">{{role.name}}</option>
+                                {{#each roles}}
+                                    <option value="{{id}}" class="dept-select">{{name}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12">
+                        <div class="form-group">
+                            <input class="btn btn-success" type="submit" value="Update Staff">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{{/partial}}
+
+{{> layout.hbs}}

@@ -29,11 +29,8 @@ public class App {
         port(getAssignedServerPort());
         staticFileLocation("/public");
 
-        // String DB_URL = "jdbc:postgresql://localhost:5432/technest";
-        String DB_URL = "jdbc:postgresql://ec2-54-147-98-183.compute-1.amazonaws.com:5432/d2ot89ljq15up8";
-        // String DB_URL = "postgres://tdztbetloazmpp:5f0f14c6c10262a9359a902f1c0efc01d6297e6bfb47e9276b7091a38644b5f8@ec2-54-147-126-202.compute-1.amazonaws.com:5432/d8ion46me8q8np";
-        Sql2o sql2o   = new Sql2o(DB_URL, "fxjqifszjpejwo", "93291ea67040421596038898ecb1ba6a9ed6dd0e9ed7786edebc7b5279eefe54");
-        // Sql2o sql2o   = new Sql2o(DB_URL, null, null);
+        String DB_URL = "jdbc:postgresql://localhost:5432/technest";
+        Sql2o sql2o   = new Sql2o(DB_URL, null, null);
         MemberService memberService = new MemberService(sql2o);
         RoleService roleService     = new RoleService(sql2o);
         DepartmentService departmentService = new DepartmentService(sql2o);
